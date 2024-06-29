@@ -1,0 +1,17 @@
+version: 3.9
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    container_name: app
+    ports:
+      - 5000:5000
+    working_dir: '/root'
+    privileged: true
+    devices:
+      - '/dev/gpiomem:/dev/gpiomem'
+    volumes:
+      - './app:/root/app'
+      - '/sys:/sys'
+    tty: true
